@@ -1,0 +1,17 @@
+body{
+	margin: 0;
+	font-family: "微软雅黑","Helvetica-Neue", "Helvetica", Arial, sans-serif;
+	line-height: 1.5;
+	color: #9496a8;
+	background-color: #eee;
+}
+a{
+	text-decoration: none;
+}
+input,textarea,ul{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
