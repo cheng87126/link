@@ -1,12 +1,8 @@
 <style>
-	.login{
-		padding: 0 2vw;
-		margin: 50vh auto 0;
-		transform:translateY(-50%);
-	}
+	
 </style>
 <template>
-	<div class="login">
+	<div class="center">
 		<div class="row">
 			<label for="username">用户名</label><input type="text" id="username" v-model="username">
 		</div>
@@ -15,6 +11,7 @@
 		</div>
 		<div class="btn" v-on:click="login">登录</div>
 		<div class="btn" v-on:click="register">注册</div>
+		<router-link to="/resetpassword">忘记密码?</router-link>
 	</div>
 </template>
 <script>
@@ -30,19 +27,7 @@
 		},
 		methods:{
 			register(){
-				let user = new AV.User()
-				// 设置用户名
-				user.setUsername(this.username)
-				// 设置密码
-				user.setPassword(this.pwd)
-				// 设置邮箱
-				// user.setEmail('tom@leancloud.cn')
-				user.signUp().then(loginedUser => {
-					console.log(loginedUser)
-					this.$router.push({ path: '/' })
-				},error => {
-					console.log(error.error)
-				})
+				this.$router.push({ path: '/register' })	
 			},
 			login(){
 				AV.User.logIn(this.username, this.pwd).then(loginedUser=> {

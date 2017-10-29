@@ -92,10 +92,6 @@
 			}
 		},
 		mounted() {
-			// AV.init({
-			// 	appId: APP_ID,
-			// 	appKey: APP_KEY
-			// })
 			this.getList()
 
 			let currentUser = AV.User.current()

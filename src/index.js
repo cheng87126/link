@@ -6,11 +6,15 @@ import App from './App.vue'
 import Main from './component/main.vue'
 import Url from './component/url.vue'
 import Login from './component/login.vue'
+import Register from './component/register.vue'
+import Resetpwd from './component/resetPwd.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
 	{path: '/login', component: Login},
+	{path:'/register', component:Register},
+	{path:'/resetpassword', component:Resetpwd},
 	{
 		path: '/', component: Main,
 		children:[
