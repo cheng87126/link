@@ -4,6 +4,15 @@
 		vertical-align: middle;
 		cursor: pointer;
 	}
+	.item-row input[type="text"]{
+		display: none;
+	}
+	.edit span{
+		display: none;
+	}  
+	.edit input[type="text"]{
+		display: block;
+	}
 </style>
 <template>
 	<div>
@@ -30,10 +39,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="item in urlList" :key="item.id">
+				<tr class="item-row"
+					v-for="item in urlList" :key="item.id" 
+					v-bind:class="{edit:isEdit === item.id}">
 					<td><input type="checkbox" name="" id=""></td>
 					<td><a v-bind:href="item.urlName">{{ item.urlName }}</a></td>
-					<td>{{ item.urlDesc }}</td>
+					<td v-on:dblclick="edit(item.id)">
+						<span>{{ item.urlDesc }}</span>
+						<input type="text" 
+							v-model="item.urlDesc"
+							v-on:keyup.enter="update(item.urlDesc,item.id)"
+						>
+					</td>
 					<td><img v-on:click="delItem(item.id)" src="../img/del.svg" alt="del"></td>
 				</tr>
 			</tbody>
@@ -49,7 +66,8 @@
 			return {
 				desc:'',
 				url:'',
-				urlList:[]
+				urlList:[],
+				isEdit:''
 			}
 		},
 		methods:{
@@ -64,7 +82,6 @@
 					this.getList()
 					this.desc = ''
 					this.url = ''
-					console.log(object)
 				})
 			},
 			delItem(id){
@@ -79,7 +96,7 @@
 				let query = new AV.Query('link')
 				query.find().then(result=>{
 					this.urlList = []
-					result.forEach(item=>{
+					result.forEach(item => {
 						this.urlList.push({
 							urlDesc:item.get('url_desc'),
 							urlName:item.get('url_name'),
@@ -89,6 +106,20 @@
 				},error=>{
 					console.log(error)
 				})
+			},
+			edit(id){
+				this.isEdit = id
+			},
+			update(desc,id){
+				AV.Query.doCloudQuery(`update link set url_desc="${desc}" where objectId="${id}"`)
+				.then(data => {
+					// data 中的 results 是本次查询返回的结果，AV.Object 实例列表
+					var results = data.results
+					this.isEdit = ''
+				}, error => {
+					// 异常处理
+					console.error(error)
+				});
 			}
 		},
 		mounted() {
