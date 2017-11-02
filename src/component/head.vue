@@ -69,7 +69,7 @@ nav a{
 				<img src="../img/user.svg" alt="user">{{username}}
 			</div>
 			<ul class="user-list" v-show="showList">
-				<li>用户信息</li>
+				<li v-on:click="userInfo">用户信息</li>
 				<li v-on:click="loginOut">退出</li>
 			</ul>
 		</div>
@@ -95,6 +95,9 @@ export default {
 			this.$store.commit('setName',{
 				username:''
 			})
+		},
+		userInfo(){
+			this.$router.push('/userInfo')
 		}
 	},
 	mounted(){

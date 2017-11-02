@@ -11,7 +11,7 @@
 			<label for="desc">电子邮件</label><input type="text" id="email" v-model="email">
 		</div>
         <div class="row">
-			<label for="desc">密码</label><input type="text" id="pwd" v-model="pwd">
+			<label for="desc">密码</label><input type="password" id="pwd" v-model="pwd">
 		</div>
 		<div class="btn" v-on:click="register">注册</div>
     </section>

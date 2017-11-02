@@ -22,7 +22,7 @@ export default {
     },
     methods:{
         resetPwd(){
-			AV.User.requestPasswordReset('1594412872@qq.com').then(function (success) {
+			AV.User.requestPasswordReset(this.email).then(function (success) {
 				console.log('邮件已发送')
 				}, function (error) {
 			});

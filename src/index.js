@@ -8,6 +8,7 @@ import Url from './component/url.vue'
 import Login from './component/login.vue'
 import Register from './component/register.vue'
 import Resetpwd from './component/resetPwd.vue'
+import UserInfo from './component/userInfo.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,9 @@ const routes = [
 			{
 				path: '/',
 				component: Url
+			},{
+				path: '/userInfo',
+				component: UserInfo
 			}
 		]
 	}
