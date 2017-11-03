@@ -12,6 +12,9 @@
 	}  
 	.edit input[type="text"]{
 		display: block;
+		width: 100%;
+		height: 100%;
+		box-sizing: border-box;
 	}
 </style>
 <template>
@@ -44,10 +47,13 @@
 					v-bind:class="{edit:isEdit === item.id}">
 					<td><input type="checkbox" name="" id=""></td>
 					<td><a v-bind:href="item.urlName">{{ item.urlName }}</a></td>
-					<td v-on:dblclick="edit(item.id)">
+					<td v-on:dblclick="edit(item.id,item.urlDesc)">
 						<span>{{ item.urlDesc }}</span>
 						<input type="text" 
 							v-model="item.urlDesc"
+							v-focus="isEdit === item.id"
+							v-on:keyup.esc="cancel(item)"
+							v-on:blur="update(item.urlDesc,item.id)"
 							v-on:keyup.enter="update(item.urlDesc,item.id)"
 						>
 					</td>
@@ -107,10 +113,15 @@
 					console.log(error)
 				})
 			},
-			edit(id){
+			edit(id,desc){
 				this.isEdit = id
+				//避免修改内容后按esc取消修改不能还原desc
+				this.descCache = desc
 			},
 			update(desc,id){
+				if(!this.isEdit){
+					return
+				}
 				AV.Query.doCloudQuery(`update link set url_desc="${desc}" where objectId="${id}"`)
 				.then(data => {
 					// data 中的 results 是本次查询返回的结果，AV.Object 实例列表
@@ -120,6 +131,10 @@
 					// 异常处理
 					console.error(error)
 				});
+			},
+			cancel(item){
+				this.isEdit = ''
+				item.urlDesc = this.descCache
 			}
 		},
 		mounted() {
@@ -132,6 +147,13 @@
 			else {
 				//currentUser 为空时，可打开用户注册界面…
 				this.$router.push({ path: '/login' })
+			}
+		},
+		directives:{
+			focus:function(el,binding){
+				if (binding.value) {
+					el.focus()
+				}
 			}
 		}
 	}
