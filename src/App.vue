@@ -4,26 +4,32 @@
 <template>
 	<div>
 		<router-view></router-view>
+		<Toast></Toast>
 	</div>
 </template>
 
 <script>
-	export default{
-		name:'App',
-		data(){
-			return {}	
-		},
-		computed:{
-			
-		},
-		methods:{
-			
-		},
-		beforeCreate(){
-			
-		},
-		mounted(){
-			
-		}
+import Toast from './component/toast.vue'
+
+export default{
+	name:'App',
+	data(){
+		return {}	
+	},
+	computed:{
+		
+	},
+	methods:{
+		
+	},
+	beforeCreate(){
+		
+	},
+	mounted(){
+		
+	},
+	components:{
+		Toast
 	}
+}
 </script>

@@ -88,11 +88,20 @@
 					this.getList()
 					this.desc = ''
 					this.url = ''
+
+					this.$store.commit('setToast',{
+						show:true,
+						msg:'添加成功!'
+					})
 				})
 			},
 			delItem(id){
 				let link = AV.Object.createWithoutData('link',id)
 				link.destroy().then(success=>{
+					this.$store.commit('setToast',{
+						show:true,
+						msg:'删除成功!'
+					})
 					this.getList()
 				},error=>{
 					// 删除失败
