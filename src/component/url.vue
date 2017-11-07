@@ -115,8 +115,13 @@
 						this.urlList.push({
 							urlDesc:item.get('url_desc'),
 							urlName:item.get('url_name'),
-							id:item.id
+							id:item.id,
+							createdAt:item.createdAt
 						})
+					})
+
+					this.urlList.sort(function(a,b){
+						return b.createdAt - a.createdAt
 					})
 				},error=>{
 					console.log(error)
