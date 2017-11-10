@@ -1,5 +1,5 @@
 <style>
-	
+
 </style>
 <template>
 	<div>
@@ -11,8 +11,10 @@
 		</div>
 		<div class="btn" v-on:click="submitUrl">提交</div>
 
-		<w-table v-bind:urls="urlList"
-				v-on:refreshList="getList"></w-table>
+		<w-table 
+			v-bind:urls="urlList" 
+			v-on:refreshList="getList">
+		</w-table>
 	</div>
 </template>
 <script>

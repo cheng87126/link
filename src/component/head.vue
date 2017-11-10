@@ -31,8 +31,7 @@ nav a{
 	position: relative;
 }
 .user-list{
-	width: 64px;
-	padding: 0.3em 0.625em;
+	width: 84px;
 	position: absolute;
 	right: 0;
 	top: 36px;
@@ -40,7 +39,11 @@ nav a{
 	z-index: 1;
 }
 .user-list li{
+	padding: 0.3em 0.625em;
 	cursor: pointer;
+}
+.user-list li:hover{
+	background-color: #eee;
 }
 .user-list::before{
 	content: '';

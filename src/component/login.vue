@@ -1,5 +1,8 @@
 <style>
-	
+.forget{
+	font-size: 12px;
+	vertical-align: bottom;
+}
 </style>
 <template>
 	<div class="center">
@@ -9,9 +12,11 @@
 		<div class="row">
 			<label for="pwd">密码</label><input type="password" id="pwd" v-model="pwd" v-on:keyup.13="login">
 		</div>
-		<div class="btn" v-on:click="login">登录</div>
-		<div class="btn" v-on:click="register">注册</div>
-		<router-link to="/resetpassword">忘记密码?</router-link>
+		<div class="btns-box">
+			<div class="btn" v-on:click="login">登录</div>
+			<div class="btn" v-on:click="register">注册</div>
+			<router-link to="/resetpassword" class="forget">忘记密码?</router-link>
+		</div>
 	</div>
 </template>
 <script>

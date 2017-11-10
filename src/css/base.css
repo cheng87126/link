@@ -25,6 +25,9 @@
 	box-sizing: border-box;
 	outline: none;
 }
+.row input:focus{
+	box-shadow: 0 0 4px rgba(0,0,0,0.4);
+}
 table{
 	width: 100%;
 	table-layout: fixed;
@@ -48,4 +51,8 @@ table tbody td{
 	padding: 0 2vw;
 	margin: 50vh auto 0;
 	transform:translateY(-50%);
+}
+.router-link-active{
+	color: #fff;
+	background-color: #006699;
 }

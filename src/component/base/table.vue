@@ -4,6 +4,9 @@ tbody td img{
 	vertical-align: middle;
 	cursor: pointer;
 }
+tbody tr:nth-of-type(2n+2){
+	background-color: #fff;
+}
 .item-row input[type="text"]{
 	display: none;
 }
