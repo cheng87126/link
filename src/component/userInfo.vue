@@ -32,9 +32,13 @@ export default {
             currentUser.set('email', this.email)
             //currentUser.set('password',this.pwd)
             currentUser.save().then(result => {
-                console.log('修改成功')
+				this.$toast({
+					message:'修改成功'
+				})
             },error => {
-
+				this.$toast({
+					message:error.message
+				})
             })
 		}
     },

@@ -42,7 +42,9 @@
 						username:loginedUser.get('username')
 					})
 				}, error => {
-					
+					this.$toast({
+						message:error.message
+					})
 				})
 			}
 		},

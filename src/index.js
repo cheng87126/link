@@ -12,6 +12,9 @@ import UserInfo from './component/userInfo.vue'
 
 Vue.use(VueRouter)
 
+import Toast from './js/toast'
+Vue.use(Toast)
+
 const routes = [
 	{path: '/login', component: Login},
 	{path:'/register', component:Register},

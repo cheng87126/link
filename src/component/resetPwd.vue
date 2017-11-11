@@ -22,10 +22,15 @@ export default {
     },
     methods:{
         resetPwd(){
-			AV.User.requestPasswordReset(this.email).then(function (success) {
-				console.log('邮件已发送')
-				}, function (error) {
-			});
+			AV.User.requestPasswordReset(this.email).then( (success)=> {
+                this.$toast({
+					message:'邮件已发送'
+				})
+			}, (error)=> {
+                this.$toast({
+					message:error.message
+				})
+			})
 		}
     }
 }
