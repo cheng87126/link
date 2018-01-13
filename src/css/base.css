@@ -4,6 +4,10 @@
 	color: #fff;
 	background-color: skyblue;
 	cursor: pointer;
+	box-shadow: 0 0 2px rgba(0,0,0,0.4);
+}
+.btn:hover{
+	box-shadow: 0 0 4px rgba(0,0,0,0.4);
 }
 
 .row{

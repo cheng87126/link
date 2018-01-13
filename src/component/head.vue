@@ -5,6 +5,7 @@ header{
 	padding: 0 0.625em;
 	align-items: center;
 	background-color: skyblue;
+	box-shadow: 0 2px 4px #BDBDBD;
 }
 nav{
 	flex:1;
@@ -36,6 +37,7 @@ nav a{
 	right: 0;
 	top: 36px;
 	background-color: #fff;
+    box-shadow: 0 0 4px #757575;
 	z-index: 1;
 }
 .user-list li{
