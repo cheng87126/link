@@ -1,5 +1,13 @@
 <style>
-
+.page{
+	display: flex;
+	align-items:center;
+	justify-content:center;
+	margin: 10px 0;
+}
+.page .btn:nth-child(2){
+	margin-left: 6px;
+}
 </style>
 <template>
 	<div>
@@ -15,11 +23,21 @@
 			v-bind:urls="urlList" 
 			v-on:refreshList="getList">
 		</w-table>
+		<div class="page">
+			<div class="btn" 
+				v-on:click="prev"
+				v-show="pageIdx !== 0">Prev</div>
+			<div class="btn" 
+				v-on:click="next"
+				v-show="pageIdx < pageTotal - 1">Next</div>
+		</div>
 	</div>
 </template>
 <script>
-const AV = require('leancloud-storage')
 import Table from './base/table.vue'
+
+const AV = require('leancloud-storage')
+const query = new AV.Query('link')
 
 export default{
 	name:'Url',
@@ -27,7 +45,10 @@ export default{
 		return {
 			desc:'',
 			url:'',
-			urlList:[]
+			urlList:[],
+			pageIdx:0,
+			pageNum:10,
+			pageTotal:0
 		}
 	},
 	components:{
@@ -51,7 +72,9 @@ export default{
 			})
 		},
 		getList(){
-			let query = new AV.Query('link')
+			query.limit(10)
+			query.descending('createdAt')
+			query.skip(this.pageIdx * this.pageNum)
 			query.find().then(result=>{
 				this.urlList = []
 				result.forEach(item => {
@@ -65,9 +88,23 @@ export default{
 				this.urlList.sort(function(a,b){
 					return b.createdAt - a.createdAt
 				})
+				//为了获得总条数,对leancloud不熟╮(╯_╰)╭
+				query.count().then(data => {
+					this.pageTotal = Math.ceil(data / this.pageNum)
+				},error => {
+					console.log(error)
+				})
 			},error=>{
 				console.log(error)
 			})
+		},
+		prev(){
+			this.pageIdx--
+			this.getList()
+		},
+		next(){
+			this.pageIdx++
+			this.getList()
 		}
 	},
 	mounted() {

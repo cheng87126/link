@@ -3,6 +3,10 @@ main{
 	margin-top: 1.25em;
 	padding: 0 0.625em;
 }
+footer{
+	text-align: center;
+	line-height: 30px;
+}
 </style>
 
 <template>
@@ -11,6 +15,7 @@ main{
 		<main>
 			<router-view></router-view>
 		</main>
+		<footer>link</footer>
 	</section>
 </template>
 
